@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[[${pageTitle}]]</title>
+    <link rel = "stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+</head>
+<div class="container-fluid text-center">
+    <h1>List Sub_Category</h1>
+    <div class="mr-2">
+        <a class="h3" href="/list_sub_cate/new">Add New</a>
+    </div>
+    <div>
+        <table class="table table-bordered">
+            <thead class ="thead-dark">
+            <tr>
+                <th>ID</th>
+                <th>Sub_Cate_Code</th>
+                <th>Sub_Cate_Name</th>
+                <th>Cate_ID</th>
+                <th>Funcion</th>
+            </tr>
+            </thead>
+            <tbody>
+            <th:block th:each="sub :${listsub}" var="p">
+                <!--                <input type ="hidden" th:field="*{page}">-->
+                <tr>
+                    <td>[[${sub.id}]]</td>
+                    <td>[[${sub.sub_cate_code}]]</td>
+                    <td>[[${sub.sub_cate_name}]]</td>
+                    <td>[[${sub.category.id}]]</td>
+                    <td>
+                        <a class="h4 m-3" th:href="@{'/list_sub_cate/edit/'+${sub.id}}">edit</a>
+                    </td>
+                </tr>
+            </th:block>
+            <br>
+            <span th:each="i: ${#numbers.sequence(1, totalPage)}">
+            <a th:href="@{'/list_sub_cate/page/'+${i}}">[[${i}]]</a> &nbsp;
+        </span>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+</html>

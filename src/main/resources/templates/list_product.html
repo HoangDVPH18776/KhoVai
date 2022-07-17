@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[[${pageTitle}]]</title>
+    <link rel = "stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+</head>
+<div class="container-fluid text-center">
+    <h1>List Product</h1>
+    <div class="mr-2">
+        <a class="h3" href="/product_form/new" >Add New</a>
+    </div>
+    <div>
+        <div th:if="${message}" class="alert alert-success">
+            [[${message}]]
+        </div>
+        <table class ="table table-bordered">
+            <thead class ="thead-dark">
+            <tr>
+                <th>productID</th>
+                <th>subCateName</th>
+                <th>productName</th>
+                <th>color</th>
+                <th>quantity</th>
+                <th>sellPrice</th>
+                <th>originPrice</th>
+                <th>statusName</th>
+                <th>brandName</th>
+                <th>Function</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <th:block th:each="pro :${listproduct}" var="p">
+                <!--                <input type ="hidden" th:field="*{page}">-->
+                <tr>
+                    <td>[[${pro.id}]]</td>
+                    <td>[[${pro.sub_cate.sub_cate_name}]]</td>
+                    <td>[[${pro.produce_name}]]</td>
+                    <td>[[${pro.color}]]</td>
+                    <td>[[${pro.quantity}]]</td>
+                    <td>[[${pro.sell_price}]]</td>
+                    <td>[[${pro.origin_price}]]</td>
+                    <td>[[${pro.status.name}]]</td>
+                    <td>
+                        <span  th:block th:each="brand : ${pro.brands.toArray()}" >
+                            <div>[[${brand.brand_name}]]</div>
+                        <span>
+</td>
+                    <td>
+                        <a class="h4" th:href="@{'/product_form/edit/'+${pro.id}}">Edit</a>
+
+                    </td>
+                </tr>
+            </th:block>
+            <a class="h4" th:href="@{'/product_form/delete'}">Delete</a>
+            <br>
+            </tbody>
+        </table>
+        <span th:each="i :${#numbers.sequence(1,totalPage)}">
+            <a th:href="@{'/list_product/page/'+${i}}">[[${i}]]</a>
+        </span>
+    </div>
+</div>
+</html>
