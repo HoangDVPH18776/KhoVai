@@ -17,5 +17,4 @@ public class KhoVaiApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(KhoVaiApplication.class, args);
 	}
-
 }
